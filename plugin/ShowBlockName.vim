@@ -202,7 +202,7 @@ function! s:FindBlock(start_pattern, middle_pattern_above, middle_pattern_below,
 	       " <middle_pattern_below>.
 	       "
 	       if a:middle_pattern_above != ''
-		    let middle = searchpair(a:sttart_pattern, a:middle_pattern_above, a:end_pattern, 'bWn')
+		    let middle = searchpair(a:start_pattern, a:middle_pattern_above, a:end_pattern, 'bWn')
 		    if middle != 0 && middle != s:top_of_block
 			 let s:middle_of_block = middle
 		    endif
