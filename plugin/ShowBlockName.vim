@@ -17,7 +17,7 @@
 " NOTE:
 "	This will NOT work if the start-of-block is the first line in a file.
 "
-" $Header: /usr/home/gary/.vim/autoload/RCS/ShowBlockName.vim,v 1.5 2002/08/15 20:29:20 gary Exp $
+" $Header: /usr/home/gary/.vim/autoload/RCS/ShowBlockName.vim,v 1.6 2002/08/15 22:47:08 gary Exp $
 
 function! ShowBlockName(...)
      if a:0 == 0
@@ -66,7 +66,7 @@ function! ShowBlockName(...)
 	  call s:FindBlock('\s*fu\%[nction]\>!\=\s.*(\%([^)]*)\|\%(\n\s*\\[^)]*\)*\n)\)', '', '', '^\s*endf\%[unction]', 0)
 
      elseif &filetype == 'perl'
-	  call s:FindBlock('sub\s\+\i\+\>\s*\%(#.*\)\?$', '', '', '^}', 0)
+	  call s:FindBlock('sub\s\+\i\+\>\s*\%(.*\)\?$', '', '', '^}', 0)
 
      elseif &filetype == 'c'
 	  call s:FindBlock('^\%(\i\+\>\%(\*\|\s\)*\)\+(\s*\%(\%(\%(,\s*\)\?\i\+\>\%(\*\|\s\)*\)\+\|\%(\%(\n[^)].*\)*\n\)\)\?)\n{', '',  '', '^}', 0)
@@ -202,7 +202,7 @@ function! s:FindBlock(start_pattern, middle_pattern_above, middle_pattern_below,
 	       " <middle_pattern_below>.
 	       "
 	       if a:middle_pattern_above != ''
-		    let middle = searchpair(a:start_pattern, a:middle_pattern_above, a:end_pattern, 'bWn')
+		    let middle = searchpair(a:sttart_pattern, a:middle_pattern_above, a:end_pattern, 'bWn')
 		    if middle != 0 && middle != s:top_of_block
 			 let s:middle_of_block = middle
 		    endif
