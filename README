@@ -1,0 +1,30 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=382
+
+Display the name of the current "block" the cursor is in in the command-line
+area (i.e., with vim's echo).
+
+A "block" is context-sensitive, (e.g., function name, variable name if in an
+initialization, type name if in a typedef, etc.)
+
+NOTE: The only languages with specific support as-is are vim scripts, Perl, and C.  Support for other languages can be added by modifying the script with appropriate search patterns.
+
+Typical use (.vimrc):
+  au CursorHold *	call ShowBlockName('quiet')
+
+  " Show the name of the function we're in on the message line; pnuemonic [[
+  map <silent> g[[	:call ShowBlockName()<CR>
+
+  " Disable ShowBlockName (once); to prevent the CursorHold autocommand from
+  " overwriting something in the command window (e.g., SyntaxAttr() output).
+  map <silent> g]] :call ShowBlockName('OFF')<CR>
+
+
+  " Tweak commands like [d so that they disable ShowBlockName so
+  " it doesn't obliterate the output of this command.
+  nnoremap [d :call ShowBlockName('[d')<CR>
+  nnoremap [i :call ShowBlockName('[i')<CR>
+
+NOTE:
+	This will NOT work if the start-of-block is the first line in a file.
+
+THIS SCRIPT USES ShowLine ( vimscript #381 )
